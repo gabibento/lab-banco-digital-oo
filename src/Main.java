@@ -1,18 +1,35 @@
+import java.util.Scanner;
 
 public class Main {
 
 	public static void main(String[] args) {
-		Cliente venilton = new Cliente();
-		venilton.setNome("Venilton");
-		
-		Conta cc = new ContaCorrente(venilton);
-		Conta poupanca = new ContaPoupanca(venilton);
+		Scanner scanner = new Scanner(System.in);
+		int opcao;
 
-		cc.depositar(100);
-		cc.transferir(100, poupanca);
-		
-		cc.imprimirExtrato();
-		poupanca.imprimirExtrato();
+		do {
+			System.out.println("=== Banco Exemplo ===");
+			System.out.println("1. Criar Conta");
+			System.out.println("2. Entrar na Conta");
+			System.out.println("0. Sair");
+			System.out.print("Escolha uma opção: ");
+			opcao = scanner.nextInt();
+
+			switch (opcao) {
+				case 1:
+					GerenciamentoBanco.criarConta(scanner);
+					break;
+				case 2:
+					GerenciamentoBanco.entrarConta(scanner);
+					break;
+				case 0:
+					System.out.println("Saindo...");
+					break;
+				default:
+					System.out.println("Opção inválida.");
+			}
+		} while (opcao != 0);
+
+		scanner.close();
 	}
 
 }
